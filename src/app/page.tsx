@@ -4,10 +4,15 @@ import React, { useState } from 'react';
 import Sidebar from '@/components/layout/Sidebar';
 import Dashboard from '@/components/features/Dashboard';
 import StockManagement from '@/components/features/StockManagement';
+import RayonManagement from '@/components/features/RayonManagement';
 import { SalesManagement } from '@/components/features/SalesManagement';
+import { ClientManagement } from '@/components/features/ClientManagement';
+import StatistiquesRayons from '@/components/features/StatistiquesRayons';
+import { useRayonData } from '@/hooks/useRayonData';
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState('dashboard');
+  const { rayons, medicamentsRayons, transferts, medicaments } = useRayonData();
 
   const renderContent = () => {
     switch (activeSection) {
@@ -15,17 +20,12 @@ export default function Home() {
         return <Dashboard />;
       case 'stock':
         return <StockManagement />;
+      case 'rayons':
+        return <RayonManagement />;
       case 'ventes':
         return <SalesManagement />;
       case 'clients':
-        return (
-          <div className="flex items-center justify-center h-96">
-            <div className="text-center">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Gestion des Clients</h2>
-              <p className="text-gray-600">Module en cours de développement</p>
-            </div>
-          </div>
-        );
+        return <ClientManagement />;
       case 'fournisseurs':
         return (
           <div className="flex items-center justify-center h-96">
@@ -37,12 +37,12 @@ export default function Home() {
         );
       case 'statistiques':
         return (
-          <div className="flex items-center justify-center h-96">
-            <div className="text-center">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">Statistiques</h2>
-              <p className="text-gray-600">Module en cours de développement</p>
-            </div>
-          </div>
+          <StatistiquesRayons 
+            rayons={rayons}
+            medicamentsRayons={medicamentsRayons}
+            transferts={transferts}
+            medicaments={medicaments}
+          />
         );
       case 'alertes':
         return (

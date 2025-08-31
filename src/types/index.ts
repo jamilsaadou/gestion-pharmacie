@@ -169,6 +169,44 @@ export interface TableColumn<T> {
   render?: (value: any, item: T) => React.ReactNode;
 }
 
+// Types pour les rayons
+export interface Rayon {
+  id: string;
+  nom: string;
+  description: string;
+  emplacement: string;
+  capaciteMax: number;
+  dateCreation: Date;
+  dateModification: Date;
+}
+
+export interface MedicamentRayon {
+  id: string;
+  medicamentId: string;
+  medicament?: Medicament;
+  rayonId: string;
+  rayon?: Rayon;
+  quantiteEnRayon: number;
+  quantiteMinimale: number;
+  dateTransfert: Date;
+  statut: 'en_vente' | 'reserve' | 'expire';
+}
+
+export interface TransfertRayon {
+  id: string;
+  medicamentId: string;
+  medicament?: Medicament;
+  rayonId: string;
+  rayon?: Rayon;
+  quantiteTransferee: number;
+  typeTransfert: 'stock_vers_rayon' | 'rayon_vers_stock' | 'rayon_vers_rayon';
+  rayonDestinationId?: string;
+  rayonDestination?: Rayon;
+  date: Date;
+  utilisateur: string;
+  commentaire?: string;
+}
+
 // Types pour les formulaires
 export interface FormulaireMedicament {
   nom: string;
@@ -194,4 +232,20 @@ export interface FormulaireVente {
   }[];
   remiseGlobale: number;
   methodePaiement: Vente['methodePaiement'];
+}
+
+export interface FormulaireRayon {
+  nom: string;
+  description: string;
+  emplacement: string;
+  capaciteMax: string;
+}
+
+export interface FormulaireTransfertRayon {
+  medicamentId: string;
+  rayonId: string;
+  quantite: string;
+  typeTransfert: TransfertRayon['typeTransfert'];
+  rayonDestinationId?: string;
+  commentaire?: string;
 }

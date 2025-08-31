@@ -23,6 +23,7 @@ interface SidebarProps {
 const menuItems = [
   { id: 'dashboard', label: 'Tableau de bord', icon: Home },
   { id: 'stock', label: 'Gestion Stock', icon: Package },
+  { id: 'rayons', label: 'Gestion Rayons', icon: Package },
   { id: 'ventes', label: 'Gestion des Ventes', icon: ShoppingCart },
   { id: 'clients', label: 'Clients', icon: Users },
   { id: 'fournisseurs', label: 'Fournisseurs', icon: Truck },
